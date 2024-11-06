@@ -1,64 +1,168 @@
-# Module 13 Mini-Project: Film Tracker
+# 🎬 Film Tracker
 
-In this Mini-Project, you'll work with a group to complete a film-tracking application that allows you to save films you've already seen or films you want to watch to localStorage.
+A React-TypeScript application that helps you track films you want to watch and ones you've already seen. The app uses the OMDB API for film data and localStorage for persisting your film lists.
 
-To complete this Mini-Project, you'll need an OMDb API key.
+## 📑 Table of Contents
+- [Features](#features)
+- [Live Demo](#live-demo)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Environment Setup](#environment-setup)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [API Reference](#api-reference)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Instructions
+## ✨ Features
+- Search for films using the OMDB API
+- Add films to your "Watch List"
+- Mark films as "Seen It"
+- Remove films from either list
+- Persistent storage using localStorage
+- Responsive design
+- Error handling and loading states
 
-The completed app should meet the following criteria:
+## 🌐 Live Demo
+[View Live Demo](https://myfilmtracker.netlify.app/)
 
-* As an avid film buff, I want to be able to search for a film title and get information on that film.
+## 🛠 Technologies Used
+- React 18.2.0
+- TypeScript 5.2.2
+- Vite 5.2.0
+- React Router DOM 6.23.1
+- React Icons 5.2.1
+- OMDB API
+- localStorage for data persistence
 
-* As an avid film buff, I want to be able to add films to my "Seen It" and "Watch" lists and have them stored in localStorage.
+## 🚀 Getting Started
 
-* As an avid film buff, I want to be able to remove films from my "Seen It" and "Watch" lists when I click the remove button ("x" icon).
+### Prerequisites
+- Node.js (v14 or higher)
+- npm (v7 or higher)
+- OMDB API key (get it from [here](http://www.omdbapi.com/apikey.aspx))
 
-* As an avid film buff, I want to be able to view my deployed site on Render.
+### Installation
+1. Clone the repository
+```bash
+git clone [your-repo-url]
+cd film-tracker
+```
 
-## Mock-Up
+2. Install dependencies
+```bash
+npm install
+```
 
-The following images show the appearance and functionality of the web application:
+### Environment Setup
+1. Create an environment directory and .env file
+```bash
+mkdir environment
+touch environment/.env
+```
 
-![The film tracker Home page displays an input field with a search button that allows the user to search for a film and see the information for that film if it is returned](./Assets/13-01-film_tracker_homepage.png)
+2. Add your OMDB API key to the .env file
+```env
+VITE_OMDB_API_KEY=your_api_key_here
+```
 
-![The film-tracker Watch List page displays rows of films the user has saved to their watch list in localStorage, with the option to remove a film from the list.](./Assets/13-02-film_tracker_watchlist.png)
+## 💻 Usage
+1. Start the development server
+```bash
+npm run dev
+```
 
-![The film-tracker "Seen It" list page displays rows of films the user has already seen stored in localStorage, with the option to remove a film from the list.](./Assets/13-03-film_tracker_seenit.png)
+2. Build for production
+```bash
+npm run build
+```
 
-## Getting Started
+3. Preview production build
+```bash
+npm run preview
+```
 
-You'll primarily be working in the `Develop/src` folder, where you will add to the provided pages and components, and implement a Film interface based on the data returned from OMDb API.
+## 📁 Project Structure
+```
+src/
+├── api/
+│   └── API.tsx
+├── components/
+│   ├── FilmCard.tsx
+│   ├── FilmsAlreadySeen.tsx
+│   ├── FilmsToWatchList.tsx
+│   └── Nav.tsx
+├── pages/
+│   ├── ErrorPage.tsx
+│   ├── FilmSearch.tsx
+│   ├── SeenIt.tsx
+│   └── WatchList.tsx
+├── utils/
+│   └── interfaces/
+│       └── Film.interface.tsx
+├── App.tsx
+└── main.tsx
+```
 
-The OMDb API endpoint has been provided in `api/API.tsx`, but it must be properly imported and implemented.
+## 📚 API Reference
 
-You'll also need to provide your OMDb API key in a `.env` file. An example `.env` file is provided, named `.env.EXAMPLE`, in the `environment` folder. You can request an OMDb API key [here](https://www.omdbapi.com/apikey.aspx).
+### OMDB API
+The application uses the OMDB API to fetch film data. Each film object contains:
+```typescript
+interface Film {
+  Title: string;
+  Year: string;
+  Director: string;
+  Plot: string;
+  Poster: string;
+  // ... other properties
+}
+```
 
-The [React icons](https://www.npmjs.com/package/react-icons) npm package has been included in the `package.json`.
+## 📦 Deployment
+The application can be deployed to Netlify:
 
-Refer to the [Full-Stack Blog on deploying to Render](https://coding-boot-camp.github.io/full-stack/render/render-deployment-guide) and the [Render documentation on setting environment variables](https://docs.render.com/configure-environment-variables).
+1. Create a netlify.toml file:
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
 
-## 📝 Notes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
 
-Refer to the documentation:
+2. Deploy to Netlify:
+- Connect your GitHub repository
+- Set up environment variables
+- Configure build settings
 
-* [The OMDb API](https://www.omdbapi.com/)
+For detailed deployment instructions, see [Deployment Guide](your-deployment-doc-link).
 
-* [React Icons](https://react-icons.github.io/react-icons/)
+## 🤝 Contributing
+1. Fork the repository
+2. Create a new branch
+```bash
+git checkout -b feature/amazing-feature
+```
+3. Commit your changes
+```bash
+git commit -m 'Add amazing feature'
+```
+4. Push to the branch
+```bash
+git push origin feature/amazing-feature
+```
+5. Open a Pull Request
 
-## 💡 Hints
-
-* How can the documentation give us an idea of the data we'll get back?
-
-* How can TypeScript interfaces keep the data being returned from the API organized and less error prone?
-
-* How can the "Seen It" and "Watch" lists be tracked separately using localStorage?
-
-## 🏆 Bonus
-
-If you've completed this activity, work through the following challenge with your group to further your knowledge:
-
-* Allow the user to sort the films alphabetically by title in their "Watch" and "Seen It" lists.
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+Created by [Amit Nandy](https://github.com/nandyamit/) - feel free to contact me!
